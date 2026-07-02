@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -H 0.0.0.0 -p ${PORT:-3000}",
     "payload": "payload",
     "generate:importmap": "payload generate:importmap",
     "seed": "tsx src/seed.ts"
