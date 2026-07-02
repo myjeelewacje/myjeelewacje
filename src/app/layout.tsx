@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { COMPANY } from '@/data/site'
 import { absoluteUrl } from '@/lib/seo'
-import { SiteShell } from '@/components/SiteShell'
+import { SiteShell } from '../components/SiteShell'
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://myjeelewacje.pl'),
