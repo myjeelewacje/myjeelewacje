@@ -7,7 +7,7 @@
     "dev": "next dev",
     "dev:railway": "next dev -H 0.0.0.0 -p ${PORT:-3000}",
     "generate:importmap": "payload generate:importmap",
-    "build": "npm run generate:importmap && next build",
+    "build": "next build",
     "start": "next start -H 0.0.0.0 -p ${PORT:-3000}",
     "payload": "payload",
     "seed": "tsx src/seed.ts"
