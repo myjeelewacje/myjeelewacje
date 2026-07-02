@@ -6,12 +6,10 @@
   "scripts": {
     "dev": "next dev",
     "dev:railway": "next dev -H 0.0.0.0 -p ${PORT:-3000}",
-    "build": "next build",
+    "generate:importmap": "payload generate:importmap",
+    "build": "npm run generate:importmap && next build",
     "start": "next start -H 0.0.0.0 -p ${PORT:-3000}",
-    "payload": "cross-env PAYLOAD_CONFIG_PATH=./src/payload.config.ts payload",
-    "payload:migrate:create": "cross-env PAYLOAD_CONFIG_PATH=./src/payload.config.ts payload migrate:create",
-    "payload:migrate": "cross-env PAYLOAD_CONFIG_PATH=./src/payload.config.ts payload migrate",
-    "generate:importmap": "cross-env PAYLOAD_CONFIG_PATH=./src/payload.config.ts payload generate:importmap",
+    "payload": "payload",
     "seed": "tsx src/seed.ts"
   },
   "dependencies": {
