@@ -25,14 +25,13 @@
     "sharp": "latest"
   },
   "devDependencies": {
-    "@types/node": "latest",
-    "@types/nodemailer": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "autoprefixer": "latest",
-    "postcss": "latest",
-    "tailwindcss": "latest",
-    "tsx": "latest",
-    "typescript": "latest"
-  }
+  "@types/node": "latest",
+  "@types/nodemailer": "latest",
+  "@types/react": "latest",
+  "@types/react-dom": "latest",
+  "autoprefixer": "^10.4.20",
+  "postcss": "^8.4.49",
+  "tailwindcss": "^3.4.17",
+  "tsx": "latest",
+  "typescript": "latest"
 }
