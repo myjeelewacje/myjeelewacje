@@ -6,8 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -H 0.0.0.0 -p ${PORT:-3000}",
-    "payload": "payload",
-    "generate:importmap": "payload generate:importmap",
+    "payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload",
+    "payload:migrate:create": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload migrate:create",
+    "payload:migrate": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload migrate",
+    "generate:importmap": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:importmap",
     "seed": "tsx src/seed.ts"
   },
   "dependencies": {
@@ -34,5 +36,8 @@
     "tailwindcss": "^3.4.17",
     "tsx": "latest",
     "typescript": "latest"
+  },
+  "engines": {
+    "node": ">=20.9.0"
   }
 }
