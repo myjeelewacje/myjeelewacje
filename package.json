@@ -4,12 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:railway": "next dev -H 0.0.0.0 -p ${PORT:-3000}",
     "build": "next build",
     "start": "next start -H 0.0.0.0 -p ${PORT:-3000}",
-    "payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload",
-    "payload:migrate:create": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload migrate:create",
-    "payload:migrate": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload migrate",
-    "generate:importmap": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:importmap",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "generate:importmap": "payload generate:importmap",
     "seed": "tsx src/seed.ts"
   },
   "dependencies": {
