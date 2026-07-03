@@ -36,12 +36,12 @@ export async function POST(req: Request) {
 
   try {
     if (process.env.SMTP_HOST && process.env.LEADS_TO_EMAIL) {
-      const transporter = nodemailer.createTransport({
+      const smtpOptions = {
         host: process.env.SMTP_HOST,
         port: Number(process.env.SMTP_PORT || 587),
         secure: Number(process.env.SMTP_PORT) === 465,
 
-        // WAŻNE: wymusza IPv4, żeby Railway nie próbował łączyć się z Gmailem przez IPv6
+        // Wymuszamy IPv4, żeby Railway nie próbował łączyć się z Gmail przez IPv6
         family: 4,
 
         connectionTimeout: 30000,
@@ -54,7 +54,9 @@ export async function POST(req: Request) {
               pass: process.env.SMTP_PASS,
             }
           : undefined,
-      })
+      } as Record<string, unknown>
+
+      const transporter = nodemailer.createTransport(smtpOptions)
 
       await transporter.sendMail({
         from: `"G Service - formularz" <${process.env.SMTP_USER || process.env.LEADS_TO_EMAIL}>`,
