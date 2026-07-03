@@ -7,7 +7,34 @@ import { COMPANY, SERVICES, PROCESS, FAQ } from '@/data/site'
 import { REALIZATIONS } from '@/data/realizations'
 import { localBusinessSchema } from '@/lib/seo'
 
+const EXTRA_HOME_SLIDERS = [
+  {
+    slug: 'mycie-elewacji-budynek-uslugowy-belgia',
+    shortTitle: 'Mycie elewacji budynku usługowego',
+    location: 'Belgia – realizacja zagraniczna',
+    service: 'Mycie elewacji',
+    sliderBefore: '/images/portfolio/mycie-elewacji-budynek-uslugowy-belgia-przed.webp',
+    sliderAfter: '/images/portfolio/mycie-elewacji-budynek-uslugowy-belgia-po.webp',
+    sliderAlt:
+      'Porównanie elewacji budynku usługowego przed i po myciu elewacji',
+  },
+]
+
 export default function HomePage() {
+  const homeSliders = [
+    ...REALIZATIONS.map((project) => ({
+      slug: project.slug,
+      shortTitle: project.shortTitle,
+      location: project.location,
+      service: project.service,
+      sliderBefore: project.sliderBefore,
+      sliderAfter: project.sliderAfter,
+      sliderAlt: project.sliderAlt,
+      href: `/realizacje/${project.slug}`,
+    })),
+    ...EXTRA_HOME_SLIDERS,
+  ]
+
   return (
     <main>
       <JsonLd data={localBusinessSchema()} />
@@ -98,7 +125,7 @@ export default function HomePage() {
             alignItems: 'start',
           }}
         >
-          {REALIZATIONS.map((project) => (
+          {homeSliders.map((project) => (
             <article
               key={project.slug}
               className="ba-card"
@@ -114,14 +141,14 @@ export default function HomePage() {
                 <span>{project.service}</span>
                 <h3>{project.shortTitle}</h3>
                 <p>{project.location}</p>
-                <div style={{ marginTop: '14px' }}>
-                  <Link
-                    className="button button-inline"
-                    href={`/realizacje/${project.slug}`}
-                  >
-                    Zobacz realizację
-                  </Link>
-                </div>
+
+                {'href' in project && project.href ? (
+                  <div style={{ marginTop: '14px' }}>
+                    <Link className="button button-inline" href={project.href}>
+                      Zobacz realizację
+                    </Link>
+                  </div>
+                ) : null}
               </div>
             </article>
           ))}
