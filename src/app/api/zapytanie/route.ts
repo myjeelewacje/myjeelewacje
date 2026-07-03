@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
 import { getPayloadClient } from '@/lib/cms'
 
 export async function POST(req: Request) {
@@ -35,55 +34,49 @@ export async function POST(req: Request) {
   }
 
   try {
-    if (process.env.SMTP_HOST && process.env.LEADS_TO_EMAIL) {
-      const smtpOptions = {
-        host: process.env.SMTP_HOST,
-        port: Number(process.env.SMTP_PORT || 587),
-        secure: Number(process.env.SMTP_PORT) === 465,
+    if (process.env.RESEND_API_KEY && process.env.LEADS_TO_EMAIL) {
+      const text = [
+        `Usługa: ${lead.service}`,
+        `Metraż: ${lead.areaM2 || ''}`,
+        `Miasto: ${lead.city}`,
+        `Województwo: ${lead.voivodeship}`,
+        `Typ budynku: ${lead.buildingType}`,
+        `Materiał: ${lead.material}`,
+        `Termin: ${lead.timeframe}`,
+        `Imię i nazwisko: ${lead.name}`,
+        `Telefon: ${lead.phone}`,
+        `E-mail: ${lead.email}`,
+        '',
+        'Szczegóły:',
+        lead.details,
+        '',
+        `Źródło: ${lead.sourceUrl}`,
+      ].join('\n')
 
-        // Wymuszamy IPv4, żeby Railway nie próbował łączyć się z Gmail przez IPv6
-        family: 4,
-
-        connectionTimeout: 30000,
-        greetingTimeout: 30000,
-        socketTimeout: 30000,
-
-        auth: process.env.SMTP_USER
-          ? {
-              user: process.env.SMTP_USER,
-              pass: process.env.SMTP_PASS,
-            }
-          : undefined,
-      } as Record<string, unknown>
-
-      const transporter = nodemailer.createTransport(smtpOptions)
-
-      await transporter.sendMail({
-        from: `"G Service - formularz" <${process.env.SMTP_USER || process.env.LEADS_TO_EMAIL}>`,
-        replyTo: lead.email || undefined,
-        to: process.env.LEADS_TO_EMAIL,
-        subject: `Nowe zapytanie: ${lead.service} - ${lead.city}`,
-        text: [
-          `Usługa: ${lead.service}`,
-          `Metraż: ${lead.areaM2 || ''}`,
-          `Miasto: ${lead.city}`,
-          `Województwo: ${lead.voivodeship}`,
-          `Typ budynku: ${lead.buildingType}`,
-          `Materiał: ${lead.material}`,
-          `Termin: ${lead.timeframe}`,
-          `Imię i nazwisko: ${lead.name}`,
-          `Telefon: ${lead.phone}`,
-          `E-mail: ${lead.email}`,
-          '',
-          'Szczegóły:',
-          lead.details,
-          '',
-          `Źródło: ${lead.sourceUrl}`,
-        ].join('\n'),
+      const resendResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: 'G Service <formularz@myjeelewacje.pl>',
+          to: [process.env.LEADS_TO_EMAIL],
+          reply_to: lead.email || undefined,
+          subject: `Nowe zapytanie: ${lead.service} - ${lead.city || 'strona www'}`,
+          text,
+        }),
       })
+
+      if (!resendResponse.ok) {
+        const errorText = await resendResponse.text()
+        console.error('Nie udało się wysłać e-maila przez Resend:', errorText)
+      }
+    } else {
+      console.warn('Brak RESEND_API_KEY lub LEADS_TO_EMAIL w Railway Variables')
     }
   } catch (err) {
-    console.error('Nie udało się wysłać e-maila:', err)
+    console.error('Nie udało się wysłać e-maila przez Resend:', err)
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://myjeelewacje.pl'
