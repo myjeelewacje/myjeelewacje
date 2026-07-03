@@ -176,7 +176,69 @@ export const REALIZATIONS: Realization[] = [
         alt: 'Biurowiec w Belgii po myciu gładkiego betonu – ujęcie pod kątem',
       },
     ],
-  },
+  },,
+  {
+    slug: 'mycie-dachu-czyszczenie-malowanie-elewacji-dom-w-lesie',
+    title: 'Mycie dachu, czyszczenie i malowanie elewacji domu w lesie – realizacja kompleksowa',
+    shortTitle: 'Mycie dachu i malowanie elewacji domu w lesie',
+    location: 'Dom prywatny w otoczeniu lasu',
+    service: 'Mycie dachu i elewacji',
+    objectType: 'Dom jednorodzinny po rozbudowie',
+    surface: 'Dachówka, stara elewacja oraz nowa część po rozbudowie domu',
+    method: 'Mycie dachu, mycie elewacji i malowanie farbą silikonową',
+    duration: 'Prace wykonane etapami',
+    extraWork: 'Realizacja kompleksowa zgodnie z życzeniem klienta – od przygotowania powierzchni po finalne malowanie elewacji',
+    excerpt:
+      'Kompleksowy projekt przy domu w lesie: mycie dachu, czyszczenie starej i nowej elewacji po rozbudowie oraz malowanie elewacji farbą silikonową dla trwałego efektu na lata.',
+    description: [
+      'W tej realizacji wykonaliśmy kompleksowe prace przy domu jednorodzinnym położonym w otoczeniu lasu. Klient chciał, aby cały zakres został przeprowadzony przez jedną ekipę: od mycia dachu, przez przygotowanie i czyszczenie elewacji, aż po końcowe malowanie.',
+      'Zakres obejmował zarówno starszą część budynku, jak i nową elewację powstałą po rozbudowie domu. Dzięki temu mogliśmy przygotować całość w spójny sposób i uzyskać jednolity, estetyczny efekt końcowy.',
+      'Prace rozpoczęliśmy od mycia dachu i usunięcia zabrudzeń z powierzchni dachówki. Następnie wykonaliśmy czyszczenie elewacji, aby przygotować podłoże pod dalsze prace. Ten etap jest bardzo ważny, ponieważ malowanie powinno być wykonane dopiero po odpowiednim oczyszczeniu powierzchni.',
+      'Po przygotowaniu ścian wykonaliśmy malowanie elewacji farbą silikonową. Tego typu farba jest dobrym wyborem przy elewacjach narażonych na zmienne warunki atmosferyczne, wilgoć i zabrudzenia z otoczenia, ponieważ pomaga uzyskać trwały i estetyczny efekt na lata.',
+      'Całość była prowadzona etapowo: mycie dachu, mycie elewacji, przygotowanie powierzchni i finalne malowanie. Takie podejście pozwoliło zachować kontrolę nad każdym etapem oraz dopracować przejścia między starą i nową częścią budynku.',
+      'Efektem końcowym jest odświeżony dom w lesie z czystym dachem, uporządkowaną elewacją i spójnym kolorem ścian. Realizacja dobrze pokazuje, że G Service może przeprowadzić nie tylko samo mycie elewacji, ale również pełne przygotowanie i odnowienie zewnętrznych powierzchni budynku.',
+    ],
+    scope: [
+      'mycie dachu',
+      'czyszczenie elewacji starej części budynku',
+      'czyszczenie nowej elewacji po rozbudowie domu',
+      'przygotowanie powierzchni pod malowanie',
+      'malowanie elewacji farbą silikonową',
+      'prace prowadzone etapami',
+      'kompleksowe odświeżenie domu jednorodzinnego',
+    ],
+    cardImage: '/images/portfolio/mycie-dachu-czyszczenie-malowanie-elewacji-dom-w-lesie-po.webp',
+    cardAlt: 'Dom w lesie po myciu dachu, czyszczeniu i malowaniu elewacji',
+    sliderBefore: '/images/portfolio/mycie-dachu-czyszczenie-elewacji-dom-w-lesie-przed.webp',
+    sliderAfter: '/images/portfolio/mycie-dachu-czyszczenie-malowanie-elewacji-dom-w-lesie-po.webp',
+    sliderAlt: 'Dom w lesie przed i po myciu dachu, czyszczeniu oraz malowaniu elewacji farbą silikonową',
+    images: [
+      {
+        src: '/images/portfolio/mycie-dachu-czyszczenie-elewacji-dom-w-lesie-przed.webp',
+        alt: 'Dom w lesie przed myciem dachu i czyszczeniem elewacji',
+      },
+      {
+        src: '/images/portfolio/dom-w-lesie-przed-myciem-dachu-i-elewacji-bok.webp',
+        alt: 'Boczna elewacja domu w lesie przed czyszczeniem i malowaniem',
+      },
+      {
+        src: '/images/portfolio/prace-etapowe-mycie-dachu-elewacji-dom-w-lesie.webp',
+        alt: 'Prace etapowe przy myciu dachu i przygotowaniu elewacji domu w lesie',
+      },
+      {
+        src: '/images/portfolio/mycie-dachu-czyszczenie-malowanie-elewacji-dom-w-lesie-po.webp',
+        alt: 'Dom w lesie po czyszczeniu i malowaniu elewacji farbą silikonową',
+      },
+      {
+        src: '/images/portfolio/dom-w-lesie-po-malowaniu-elewacji-farba-silikonowa-bok.webp',
+        alt: 'Boczna elewacja domu po malowaniu farbą silikonową',
+      },
+      {
+        src: '/images/portfolio/dom-w-lesie-po-kompleksowej-renowacji-elewacji.webp',
+        alt: 'Dom po kompleksowym myciu dachu i malowaniu elewacji',
+      },
+    ],
+  }
 ]
 
 export function getRealizationBySlug(slug: string) {
