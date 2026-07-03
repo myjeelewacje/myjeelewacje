@@ -13,17 +13,25 @@ export function BeforeAfterSlider({ before, after, title, alt }: Props) {
   const [position, setPosition] = useState(50)
 
   return (
-    <div className="ba" aria-label={`${title} - porównanie przed i po`}>
+    <div
+      aria-label={`${title} - porównanie przed i po`}
+      style={{
+        width: '100%',
+        maxWidth: '1120px',
+        margin: '0 auto',
+      }}
+    >
       <div
-        className="ba-images"
         style={{
           position: 'relative',
           overflow: 'hidden',
           width: '100%',
+          height: 'clamp(320px, 42vw, 600px)',
+          borderRadius: '24px',
           cursor: 'ew-resize',
           touchAction: 'none',
           userSelect: 'none',
-          pointerEvents: 'auto',
+          background: '#111',
         }}
       >
         <img
@@ -35,20 +43,17 @@ export function BeforeAfterSlider({ before, after, title, alt }: Props) {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            userSelect: 'none',
             pointerEvents: 'none',
+            userSelect: 'none',
           }}
         />
 
         <div
-          className="ba-before"
           style={{
             position: 'absolute',
-            top: 0,
-            left: 0,
-            bottom: 0,
-            width: `${position}%`,
+            inset: 0,
             overflow: 'hidden',
+            clipPath: `inset(0 ${100 - position}% 0 0)`,
             pointerEvents: 'none',
           }}
         >
@@ -61,29 +66,85 @@ export function BeforeAfterSlider({ before, after, title, alt }: Props) {
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              userSelect: 'none',
               pointerEvents: 'none',
+              userSelect: 'none',
             }}
           />
         </div>
 
         <div
-          className="ba-line"
           style={{
             position: 'absolute',
             top: 0,
             bottom: 0,
             left: `${position}%`,
+            width: '3px',
+            background: 'rgba(255,255,255,0.95)',
             transform: 'translateX(-50%)',
-            pointerEvents: 'none',
             zIndex: 5,
+            pointerEvents: 'none',
+          }}
+        />
+
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: `${position}%`,
+            width: '48px',
+            height: '48px',
+            borderRadius: '999px',
+            background: '#fff',
+            color: '#111',
+            display: 'grid',
+            placeItems: 'center',
+            transform: 'translate(-50%, -50%)',
+            boxShadow: '0 12px 30px rgba(0,0,0,0.25)',
+            zIndex: 6,
+            pointerEvents: 'none',
+            fontWeight: 800,
           }}
         >
-          <span>↔</span>
+          ↔
         </div>
 
-        <span className="ba-label ba-left">PRZED</span>
-        <span className="ba-label ba-right">PO</span>
+        <span
+          style={{
+            position: 'absolute',
+            top: '18px',
+            left: '18px',
+            zIndex: 7,
+            background: 'rgba(20,20,20,0.9)',
+            color: '#fff',
+            padding: '8px 12px',
+            borderRadius: '10px',
+            fontSize: '12px',
+            fontWeight: 800,
+            letterSpacing: '0.04em',
+            pointerEvents: 'none',
+          }}
+        >
+          PRZED
+        </span>
+
+        <span
+          style={{
+            position: 'absolute',
+            top: '18px',
+            right: '18px',
+            zIndex: 7,
+            background: '#3bad2d',
+            color: '#fff',
+            padding: '8px 12px',
+            borderRadius: '10px',
+            fontSize: '12px',
+            fontWeight: 800,
+            letterSpacing: '0.04em',
+            pointerEvents: 'none',
+          }}
+        >
+          PO
+        </span>
 
         <input
           type="range"

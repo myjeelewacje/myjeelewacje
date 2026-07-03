@@ -107,8 +107,21 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="ba-grid">
-          <article className="ba-card" style={{ gridColumn: '1 / -1' }}>
+        <div
+          className="ba-grid"
+          style={{
+            maxWidth: '1180px',
+            margin: '0 auto',
+          }}
+        >
+          <article
+            className="ba-card"
+            style={{
+              width: '100%',
+              maxWidth: '1180px',
+              margin: '0 auto',
+            }}
+          >
             <BeforeAfterSlider
               before={FEATURED_PROJECT.before}
               after={FEATURED_PROJECT.after}

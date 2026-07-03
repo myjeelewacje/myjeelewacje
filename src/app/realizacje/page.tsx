@@ -1,4 +1,3 @@
-
 import Link from 'next/link'
 import { BeforeAfterSlider } from '@/components/BeforeAfterSlider'
 
@@ -134,8 +133,21 @@ export default function ProjectsPage() {
             <p>{project.excerpt}</p>
           </div>
 
-          <div className="ba-grid">
-            <article className="ba-card" style={{ gridColumn: '1 / -1' }}>
+          <div
+            className="ba-grid"
+            style={{
+              maxWidth: '1180px',
+              margin: '0 auto',
+            }}
+          >
+            <article
+              className="ba-card"
+              style={{
+                width: '100%',
+                maxWidth: '1180px',
+                margin: '0 auto',
+              }}
+            >
               <BeforeAfterSlider
                 before={project.beforeImage}
                 after={project.afterImage}
