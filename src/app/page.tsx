@@ -4,31 +4,8 @@ import { JsonLd } from '@/components/JsonLd'
 import { BeforeAfterSlider } from '@/components/BeforeAfterSlider'
 import { HeroSlider } from '@/components/HeroSlider'
 import { COMPANY, SERVICES, PROCESS, FAQ } from '@/data/site'
+import { REALIZATIONS } from '@/data/realizations'
 import { localBusinessSchema } from '@/lib/seo'
-
-const FEATURED_PROJECT = {
-  title: 'Mycie chemiczne elewacji placówki opiekuńczej',
-  location: 'realizacja zagraniczna',
-  service: 'Mycie elewacji',
-  before: '/images/portfolio/mycie-chemiczne-elewacji-placowka-opiekuncza-przed.webp',
-  after: '/images/portfolio/mycie-chemiczne-elewacji-placowka-opiekuncza-po.webp',
-  cover: '/images/portfolio/mycie-chemiczne-elewacji-placowka-opiekuncza-po.webp',
-  alt: 'Elewacja placówki opiekuńczej przed i po myciu chemicznym bez użycia wysokiego ciśnienia',
-  excerpt:
-    'Bezpieczne mycie chemiczne elewacji wykonanej z tynku typu baranek. Prace przeprowadzono bez użycia wysokiego ciśnienia, aby skutecznie usunąć zabrudzenia bez ryzyka uszkodzenia struktury tynku.',
-}
-
-const PROJECTS = [
-  {
-    title: FEATURED_PROJECT.title,
-    slug: 'mycie-chemiczne-elewacji-placowka-opiekuncza',
-    location: FEATURED_PROJECT.location,
-    service: FEATURED_PROJECT.service,
-    image: FEATURED_PROJECT.cover,
-    excerpt: FEATURED_PROJECT.excerpt,
-    details: ['tynk typu baranek', 'mycie chemiczne', 'bez wysokiego ciśnienia', '3 dni pracy'],
-  },
-]
 
 export default function HomePage() {
   return (
@@ -37,15 +14,14 @@ export default function HomePage() {
 
       <section className="hero hero-premium">
         <HeroSlider />
-
         <div className="hero-copy">
           <span className="eyebrow">Czystość, którą widać od razu</span>
           <h1>Profesjonalne mycie elewacji i dachów</h1>
           <p>
             Usuwamy zabrudzenia, glony, mech, porosty i osady. Obsługujemy domy
-            prywatne, firmy i większe obiekty.
+            prywatne, firmy i większe obiekty, również w formule realizacji
+            etapowych.
           </p>
-
           <div className="hero-buttons">
             <Link className="button button-inline" href="#realizacje">
               Zobacz realizacje
@@ -54,16 +30,13 @@ export default function HomePage() {
               Bezpłatna wycena
             </Link>
           </div>
-
           <div className="checks">
             <span>Bezpieczne metody</span>
             <span>Szybka odpowiedź</span>
             <span>Realne zdjęcia wykonanych prac</span>
           </div>
         </div>
-
         <LeadForm />
-
         <div className="stats">
           <div className="stat">
             <strong>24h</strong>
@@ -93,7 +66,6 @@ export default function HomePage() {
             dobieramy do materiału i stopnia zabrudzenia.
           </p>
         </div>
-
         <div className="service-cards">
           {SERVICES.slice(0, 4).map((s) => (
             <article className="service-card" key={s.slug}>
@@ -111,42 +83,48 @@ export default function HomePage() {
       <section id="przed-po" className="before-section">
         <div className="section-title centered">
           <span className="eyebrow">Przed i po</span>
-          <h2>Mycie chemiczne elewacji bez uszkadzania tynku</h2>
+          <h2>Zobacz efekt naszej pracy</h2>
           <p>
-            Przesuń suwak i zobacz efekt czyszczenia elewacji z tynku typu
-            baranek. Praca wykonana metodą chemiczną, bez wysokiego ciśnienia
-            na tynku.
+            Na stronie głównej pokazujemy najlepsze porównania przed i po z
+            wybranych realizacji.
           </p>
         </div>
 
         <div
-          className="ba-grid"
           style={{
-            maxWidth: '1180px',
-            margin: '0 auto',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
           }}
         >
-          <article
-            className="ba-card"
-            style={{
-              width: '100%',
-              maxWidth: '1180px',
-              margin: '0 auto',
-            }}
-          >
-            <BeforeAfterSlider
-              before={FEATURED_PROJECT.before}
-              after={FEATURED_PROJECT.after}
-              title={FEATURED_PROJECT.title}
-              alt={FEATURED_PROJECT.alt}
-            />
-
-            <div className="ba-caption">
-              <span>{FEATURED_PROJECT.service}</span>
-              <h3>{FEATURED_PROJECT.title}</h3>
-              <p>{FEATURED_PROJECT.location}</p>
-            </div>
-          </article>
+          {REALIZATIONS.map((project) => (
+            <article
+              key={project.slug}
+              className="ba-card"
+              style={{ maxWidth: '760px', margin: '0 auto', width: '100%' }}
+            >
+              <BeforeAfterSlider
+                before={project.sliderBefore}
+                after={project.sliderAfter}
+                title={project.shortTitle}
+                alt={project.sliderAlt}
+              />
+              <div className="ba-caption">
+                <span>{project.service}</span>
+                <h3>{project.shortTitle}</h3>
+                <p>{project.location}</p>
+                <div style={{ marginTop: '14px' }}>
+                  <Link
+                    className="button button-inline"
+                    href={`/realizacje/${project.slug}`}
+                  >
+                    Zobacz realizację
+                  </Link>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -157,75 +135,43 @@ export default function HomePage() {
             <h2>Wykonane prace pokazane projekt po projekcie</h2>
           </div>
           <p>
-            W tej sekcji będą pojawiać się kolejne projekty. Każda karta prowadzi
-            do pełnego opisu realizacji ze zdjęciami przed, w trakcie i po.
+            Zamiast pojedynczych, przypadkowych zdjęć pokazujemy pełne
+            realizacje: opis prac, zakres usługi oraz zdjęcia przed, w trakcie i
+            po wykonaniu usługi.
           </p>
         </div>
 
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 420px))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
             gap: '28px',
-            alignItems: 'stretch',
           }}
         >
-          {PROJECTS.map((project) => (
+          {REALIZATIONS.map((project) => (
             <article
               key={project.slug}
               className="gallery-card"
-              style={{
-                maxWidth: '420px',
-                overflow: 'hidden',
-              }}
+              style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
             >
               <img
-                src={project.image}
-                alt={project.title}
+                src={project.cardImage}
+                alt={project.cardAlt}
                 loading="lazy"
-                style={{
-                  width: '100%',
-                  height: '260px',
-                  objectFit: 'cover',
-                  display: 'block',
-                }}
+                style={{ width: '100%', height: '260px', objectFit: 'cover' }}
               />
-
-              <div style={{ padding: '22px' }}>
+              <div style={{ padding: '24px' }}>
                 <span>{project.service}</span>
-                <h3>{project.title}</h3>
-                <p>{project.excerpt}</p>
-
-                <div
-                  style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '8px',
-                    margin: '16px 0 20px',
-                  }}
-                >
-                  {project.details.map((detail) => (
-                    <small
-                      key={detail}
-                      style={{
-                        border: '1px solid rgba(64, 169, 50, 0.25)',
-                        borderRadius: '999px',
-                        padding: '6px 10px',
-                        background: 'rgba(64, 169, 50, 0.08)',
-                        fontWeight: 700,
-                      }}
-                    >
-                      {detail}
-                    </small>
-                  ))}
+                <h3 style={{ marginTop: '12px' }}>{project.shortTitle}</h3>
+                <p style={{ marginTop: '12px' }}>{project.excerpt}</p>
+                <div style={{ marginTop: '18px' }}>
+                  <Link
+                    className="button button-inline"
+                    href={`/realizacje/${project.slug}`}
+                  >
+                    Zobacz projekt
+                  </Link>
                 </div>
-
-                <Link
-                  className="button button-inline"
-                  href={`/realizacje#${project.slug}`}
-                >
-                  Zobacz projekt
-                </Link>
               </div>
             </article>
           ))}
@@ -236,7 +182,6 @@ export default function HomePage() {
         <div className="panel-dark">
           <span className="eyebrow">Jak pracujemy</span>
           <h2>Proces bez chaosu i bez zgadywania</h2>
-
           <div className="process">
             {PROCESS.slice(0, 3).map((p) => (
               <div className="process-item" key={p.step}>
@@ -249,14 +194,12 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-
         <div className="content">
           <h2>Dlaczego dobór metody jest ważny?</h2>
           <p>
             Mycie elewacji i dachów powinno być dopasowane do materiału. Innego
             podejścia wymaga tynk, innego klinkier, dachówka ceramiczna,
-            cementowa lub blachodachówka. Dlatego formularz zbiera metraż,
-            miejscowość, rodzaj budynku i zdjęcia.
+            cementowa, blachodachówka czy gładki beton architektoniczny.
           </p>
           <Link className="button button-inline" href="/jak-pracujemy">
             Zobacz cały proces
@@ -270,7 +213,6 @@ export default function HomePage() {
           <h2>Najczęstsze pytania</h2>
           <p>FAQ pomaga klientom i wzmacnia widoczność strony w Google.</p>
         </div>
-
         <div className="faq">
           {FAQ.map((item) => (
             <details key={item.q}>
@@ -286,11 +228,10 @@ export default function HomePage() {
           <span className="eyebrow">Darmowa wycena</span>
           <h2>Potrzebujesz czystej elewacji lub dachu?</h2>
           <p>
-            Wyślij zapytanie i dołącz zdjęcia. Przygotujemy odpowiedź
-            dopasowaną do Twojej nieruchomości.
+            Wyślij zapytanie i dołącz zdjęcia. Przygotujemy odpowiedź dopasowaną
+            do Twojej nieruchomości.
           </p>
         </div>
-
         <Link className="button button-inline" href="#wycena">
           Zapytaj o wycenę
         </Link>
