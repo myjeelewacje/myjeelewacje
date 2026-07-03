@@ -4,17 +4,20 @@ import { notFound } from 'next/navigation'
 import { REALIZATIONS, getRealizationBySlug } from '@/data/realizations'
 
 type PageProps = {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export function generateStaticParams() {
-  return REALIZATIONS.map((project) => ({ slug: project.slug }))
+  return REALIZATIONS.map((project) => ({
+    slug: project.slug,
+  }))
 }
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  const project = getRealizationBySlug(params.slug)
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params
+  const project = getRealizationBySlug(slug)
 
   if (!project) {
     return {
@@ -28,8 +31,9 @@ export function generateMetadata({ params }: PageProps): Metadata {
   }
 }
 
-export default function RealizationDetailPage({ params }: PageProps) {
-  const project = getRealizationBySlug(params.slug)
+export default async function RealizationDetailPage({ params }: PageProps) {
+  const { slug } = await params
+  const project = getRealizationBySlug(slug)
 
   if (!project) {
     notFound()
@@ -107,16 +111,25 @@ export default function RealizationDetailPage({ params }: PageProps) {
           ))}
 
           <h3>Wykonane prace</h3>
+
           <ul>
             {project.scope.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
 
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '22px' }}>
+          <div
+            style={{
+              display: 'flex',
+              gap: '12px',
+              flexWrap: 'wrap',
+              marginTop: '22px',
+            }}
+          >
             <Link className="button button-inline" href="/#wycena">
               Zapytaj o podobną realizację
             </Link>
+
             <Link className="button-secondary" href="/realizacje">
               Wróć do realizacji
             </Link>
