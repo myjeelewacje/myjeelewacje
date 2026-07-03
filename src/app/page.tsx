@@ -18,6 +18,18 @@ const FEATURED_PROJECT = {
     'Bezpieczne mycie chemiczne elewacji wykonanej z tynku typu baranek. Prace przeprowadzono bez użycia wysokiego ciśnienia, aby skutecznie usunąć zabrudzenia bez ryzyka uszkodzenia struktury tynku.',
 }
 
+const PROJECTS = [
+  {
+    title: FEATURED_PROJECT.title,
+    slug: 'mycie-chemiczne-elewacji-placowka-opiekuncza',
+    location: FEATURED_PROJECT.location,
+    service: FEATURED_PROJECT.service,
+    image: FEATURED_PROJECT.cover,
+    excerpt: FEATURED_PROJECT.excerpt,
+    details: ['tynk typu baranek', 'mycie chemiczne', 'bez wysokiego ciśnienia', '3 dni pracy'],
+  },
+]
+
 export default function HomePage() {
   return (
     <main>
@@ -145,70 +157,78 @@ export default function HomePage() {
             <h2>Wykonane prace pokazane projekt po projekcie</h2>
           </div>
           <p>
-            Zamiast pojedynczych, przypadkowych zdjęć pokazujemy pełne
-            realizacje: opis, zakres prac, zdjęcia przed, w trakcie i po.
+            W tej sekcji będą pojawiać się kolejne projekty. Każda karta prowadzi
+            do pełnego opisu realizacji ze zdjęciami przed, w trakcie i po.
           </p>
         </div>
 
-        <div className="split">
-          <div className="panel-dark">
-            <span className="eyebrow">Projekt</span>
-            <h2>{FEATURED_PROJECT.title}</h2>
-            <p>{FEATURED_PROJECT.excerpt}</p>
-
-            <div className="process">
-              <div className="process-item">
-                <strong>01</strong>
-                <div>
-                  <h3>Rodzaj powierzchni</h3>
-                  <p>Tynk typu baranek wymagający ostrożnego czyszczenia.</p>
-                </div>
-              </div>
-
-              <div className="process-item">
-                <strong>02</strong>
-                <div>
-                  <h3>Metoda</h3>
-                  <p>Mycie chemiczne bez wysokiego ciśnienia na tynku.</p>
-                </div>
-              </div>
-
-              <div className="process-item">
-                <strong>03</strong>
-                <div>
-                  <h3>Czas realizacji</h3>
-                  <p>Prace wykonane etapami w ciągu 3 dni.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="content">
-            <img
-              src={FEATURED_PROJECT.cover}
-              alt="Elewacja placówki opiekuńczej po myciu chemicznym"
-              loading="lazy"
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 420px))',
+            gap: '28px',
+            alignItems: 'stretch',
+          }}
+        >
+          {PROJECTS.map((project) => (
+            <article
+              key={project.slug}
+              className="gallery-card"
               style={{
-                width: '100%',
-                borderRadius: '24px',
-                objectFit: 'cover',
+                maxWidth: '420px',
+                overflow: 'hidden',
               }}
-            />
-
-            <h3>Realizacja zagraniczna na obiekcie opiekuńczym</h3>
-            <p>
-              Elewacja została oczyszczona metodą chemiczną, bez użycia
-              wysokiego ciśnienia na tynku. Dzięki temu udało się usunąć
-              zabrudzenia i zacieki bez naruszania struktury powierzchni.
-            </p>
-
-            <Link
-              className="button button-inline"
-              href="/realizacje#mycie-chemiczne-elewacji-placowka-opiekuncza"
             >
-              Zobacz pełny opis realizacji
-            </Link>
-          </div>
+              <img
+                src={project.image}
+                alt={project.title}
+                loading="lazy"
+                style={{
+                  width: '100%',
+                  height: '260px',
+                  objectFit: 'cover',
+                  display: 'block',
+                }}
+              />
+
+              <div style={{ padding: '22px' }}>
+                <span>{project.service}</span>
+                <h3>{project.title}</h3>
+                <p>{project.excerpt}</p>
+
+                <div
+                  style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '8px',
+                    margin: '16px 0 20px',
+                  }}
+                >
+                  {project.details.map((detail) => (
+                    <small
+                      key={detail}
+                      style={{
+                        border: '1px solid rgba(64, 169, 50, 0.25)',
+                        borderRadius: '999px',
+                        padding: '6px 10px',
+                        background: 'rgba(64, 169, 50, 0.08)',
+                        fontWeight: 700,
+                      }}
+                    >
+                      {detail}
+                    </small>
+                  ))}
+                </div>
+
+                <Link
+                  className="button button-inline"
+                  href={`/realizacje#${project.slug}`}
+                >
+                  Zobacz projekt
+                </Link>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
