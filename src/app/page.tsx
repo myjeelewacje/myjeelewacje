@@ -41,6 +41,7 @@ export default function HomePage() {
 
       <section className="hero hero-premium">
         <HeroSlider />
+
         <div className="hero-copy">
           <span className="eyebrow">Czystość, którą widać od razu</span>
           <h1>Profesjonalne mycie elewacji i dachów</h1>
@@ -49,6 +50,7 @@ export default function HomePage() {
             prywatne, firmy i większe obiekty, również w formule realizacji
             etapowych.
           </p>
+
           <div className="hero-buttons">
             <Link className="button button-inline" href="#realizacje">
               Zobacz realizacje
@@ -57,13 +59,16 @@ export default function HomePage() {
               Bezpłatna wycena
             </Link>
           </div>
+
           <div className="checks">
             <span>Bezpieczne metody</span>
             <span>Szybka odpowiedź</span>
             <span>Realne zdjęcia wykonanych prac</span>
           </div>
         </div>
+
         <LeadForm />
+
         <div className="stats">
           <div className="stat">
             <strong>24h</strong>
@@ -93,6 +98,7 @@ export default function HomePage() {
             dobieramy do materiału i stopnia zabrudzenia.
           </p>
         </div>
+
         <div className="service-cards">
           {SERVICES.slice(0, 4).map((s) => (
             <article className="service-card" key={s.slug}>
@@ -137,6 +143,7 @@ export default function HomePage() {
                 title={project.shortTitle}
                 alt={project.sliderAlt}
               />
+
               <div className="ba-caption">
                 <span>{project.service}</span>
                 <h3>{project.shortTitle}</h3>
@@ -179,7 +186,11 @@ export default function HomePage() {
             <article
               key={project.slug}
               className="gallery-card"
-              style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
+              style={{
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
             >
               <img
                 src={project.cardImage}
@@ -187,10 +198,12 @@ export default function HomePage() {
                 loading="lazy"
                 style={{ width: '100%', height: '260px', objectFit: 'cover' }}
               />
+
               <div style={{ padding: '24px' }}>
                 <span>{project.service}</span>
                 <h3 style={{ marginTop: '12px' }}>{project.shortTitle}</h3>
                 <p style={{ marginTop: '12px' }}>{project.excerpt}</p>
+
                 <div style={{ marginTop: '18px' }}>
                   <Link
                     className="button button-inline"
@@ -209,6 +222,7 @@ export default function HomePage() {
         <div className="panel-dark">
           <span className="eyebrow">Jak pracujemy</span>
           <h2>Proces bez chaosu i bez zgadywania</h2>
+
           <div className="process">
             {PROCESS.slice(0, 3).map((p) => (
               <div className="process-item" key={p.step}>
@@ -221,6 +235,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+
         <div className="content">
           <h2>Dlaczego dobór metody jest ważny?</h2>
           <p>
@@ -240,6 +255,7 @@ export default function HomePage() {
           <h2>Najczęstsze pytania</h2>
           <p>FAQ pomaga klientom i wzmacnia widoczność strony w Google.</p>
         </div>
+
         <div className="faq">
           {FAQ.map((item) => (
             <details key={item.q}>
@@ -259,6 +275,7 @@ export default function HomePage() {
             do Twojej nieruchomości.
           </p>
         </div>
+
         <Link className="button button-inline" href="#wycena">
           Zapytaj o wycenę
         </Link>

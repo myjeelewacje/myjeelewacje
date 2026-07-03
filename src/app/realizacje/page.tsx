@@ -31,7 +31,11 @@ export default function ProjectsPage() {
             <article
               key={project.slug}
               className="gallery-card"
-              style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
+              style={{
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
             >
               <img
                 src={project.cardImage}
@@ -39,6 +43,7 @@ export default function ProjectsPage() {
                 loading="lazy"
                 style={{ width: '100%', height: '270px', objectFit: 'cover' }}
               />
+
               <div style={{ padding: '24px' }}>
                 <span>{project.service}</span>
                 <h2 style={{ fontSize: '2rem', marginTop: '12px' }}>
