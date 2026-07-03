@@ -75,7 +75,7 @@ export const SERVICES = [
     bullets: [
       'prace dla firm i wspólnot',
       'możliwość etapowania prac',
-      'czyszczenie elewacji i przeszkleń wokół budynku',
+      'możliwość pracy bez wysokiego ciśnienia na delikatnych tynkach',
       'dokumentacja zdjęciowa realizacji',
     ],
   },
@@ -95,6 +95,14 @@ export const SERVICES = [
 ]
 
 export const BEFORE_AFTER = [
+  {
+    title: 'Mycie chemiczne elewacji bez wysokiego ciśnienia',
+    city: 'realizacja zagraniczna',
+    service: 'Mycie elewacji',
+    before: '/images/portfolio/mycie-chemiczne-elewacji-placowka-opiekuncza-przed.webp',
+    after: '/images/portfolio/mycie-chemiczne-elewacji-placowka-opiekuncza-po.webp',
+    alt: 'Elewacja placówki opiekuńczej przed i po myciu chemicznym bez użycia wysokiego ciśnienia',
+  },
   {
     title: 'Mycie dachu – dom jednorodzinny',
     city: 'realizacja prywatna',
@@ -146,6 +154,60 @@ export const BEFORE_AFTER = [
 ]
 
 export const GALLERY = [
+  {
+    title: 'Mycie chemiczne elewacji placówki opiekuńczej',
+    city: 'realizacja zagraniczna',
+    image: '/images/portfolio/mycie-chemiczne-elewacji-placowka-opiekuncza-po.webp',
+    tag: 'Elewacje',
+  },
+  {
+    title: 'Elewacja przed myciem chemicznym',
+    city: 'realizacja zagraniczna',
+    image: '/images/portfolio/mycie-chemiczne-elewacji-placowka-opiekuncza-przed.webp',
+    tag: 'Przed i po',
+  },
+  {
+    title: 'Zacieki na elewacji przed czyszczeniem',
+    city: 'realizacja zagraniczna',
+    image: '/images/portfolio/zacieki-na-elewacji-przed-myciem-chemicznym.webp',
+    tag: 'Elewacje',
+  },
+  {
+    title: 'Zabrudzona elewacja przed pracami',
+    city: 'realizacja zagraniczna',
+    image: '/images/portfolio/zabrudzona-elewacja-placowka-opiekuncza-przed-myciem-1.webp',
+    tag: 'Elewacje',
+  },
+  {
+    title: 'Obiekt opiekuńczy przed myciem',
+    city: 'realizacja zagraniczna',
+    image: '/images/portfolio/mycie-elewacji-obiekt-opiekunczy-przed-pracami-2.webp',
+    tag: 'Firmy',
+  },
+  {
+    title: 'Mycie chemiczne elewacji w trakcie prac',
+    city: 'realizacja zagraniczna',
+    image: '/images/portfolio/mycie-chemiczne-elewacji-placowka-opiekuncza-w-trakcie.webp',
+    tag: 'W trakcie',
+  },
+  {
+    title: 'Czyszczenie tynku baranek bez ciśnienia',
+    city: 'realizacja zagraniczna',
+    image: '/images/portfolio/czyszczenie-elewacji-tynk-baranek-bez-cisnienia.webp',
+    tag: 'Elewacje',
+  },
+  {
+    title: 'Elewacja po myciu chemicznym',
+    city: 'realizacja zagraniczna',
+    image: '/images/portfolio/elewacja-placowki-opiekunczej-po-myciu-chemicznym.webp',
+    tag: 'Po czyszczeniu',
+  },
+  {
+    title: 'Odświeżona elewacja po czyszczeniu',
+    city: 'realizacja zagraniczna',
+    image: '/images/portfolio/odswiezona-elewacja-obiekt-opiekunczy-po-czyszczeniu.webp',
+    tag: 'Po czyszczeniu',
+  },
   {
     title: 'Mycie dachu z panelami PV',
     city: 'realizacja prywatna',
@@ -199,6 +261,91 @@ export const GALLERY = [
     city: 'podjazd / taras',
     image: '/images/portfolio/galeria-kostka.webp',
     tag: 'Kostka',
+  },
+]
+
+export const REALIZATIONS = [
+  {
+    title: 'Mycie chemiczne elewacji placówki opiekuńczej – realizacja zagraniczna',
+    slug: 'mycie-chemiczne-elewacji-placowka-opiekuncza',
+    location: 'realizacja zagraniczna',
+    service: 'Mycie chemiczne elewacji',
+    objectType: 'Placówka opiekuńcza',
+    surface: 'Tynk typu baranek',
+    duration: '3 dni',
+    extraWork: 'Mycie okien na życzenie klienta',
+    coverImage: '/images/portfolio/mycie-chemiczne-elewacji-placowka-opiekuncza-po.webp',
+    beforeImage: '/images/portfolio/mycie-chemiczne-elewacji-placowka-opiekuncza-przed.webp',
+    afterImage: '/images/portfolio/mycie-chemiczne-elewacji-placowka-opiekuncza-po.webp',
+    excerpt:
+      'Bezpieczne mycie chemiczne elewacji wykonanej z tynku typu baranek. Prace przeprowadzono bez użycia wysokiego ciśnienia, aby skutecznie usunąć zabrudzenia bez ryzyka uszkodzenia struktury tynku.',
+    description: [
+      'W ramach tej realizacji wykonaliśmy mycie chemiczne elewacji placówki opiekuńczej w ramach zagranicznego zlecenia. Obiekt posiadał elewację wykończoną tynkiem typu baranek, dlatego kluczowe było dobranie metody czyszczenia, która pozwoli skutecznie usunąć zabrudzenia, ale jednocześnie nie naruszy struktury powierzchni.',
+      'Na elewacji widoczne były zabrudzenia atmosferyczne, zielonkawe naloty oraz mocniejsze zacieki w miejscach szczególnie narażonych na wilgoć i spływanie wody. Największe zabrudzenia występowały między innymi nad oknami oraz na wyższych partiach ścian.',
+      'Zamiast agresywnego mycia wysokim ciśnieniem zastosowaliśmy czyszczenie chemiczne. Taka metoda pozwala rozpuścić i usunąć zabrudzenia stopniowo, bez mechanicznego niszczenia tynku. Jest to szczególnie ważne przy delikatnych powierzchniach, takich jak tynk typu baranek, gdzie zbyt mocne ciśnienie mogłoby wypłukać strukturę lub zostawić ślady.',
+      'Prace zostały rozłożone na 3 dni. Czyszczenie prowadziliśmy etapami, obserwując jak zabrudzenia schodzą z powierzchni. W miejscach mocniej zabrudzonych proces wymagał dokładniejszego podejścia i większej cierpliwości.',
+      'Najważniejszym celem było uzyskanie czystej, odświeżonej elewacji bez ryzyka uszkodzenia powierzchni. Dzięki zastosowaniu mycia chemicznego bez wysokiego ciśnienia udało się poprawić wygląd całego obiektu, zachowując strukturę tynku typu baranek.',
+      'Na dodatkowe życzenie klienta po zakończeniu prac przy elewacji wykonaliśmy również mycie okien. Dzięki temu obiekt zyskał spójny, czysty i zadbany wygląd.',
+    ],
+    scope: [
+      'mycie chemiczne elewacji',
+      'usuwanie zabrudzeń atmosferycznych',
+      'usuwanie zielonkawych nalotów i zacieków',
+      'bezpieczne czyszczenie tynku typu baranek',
+      'praca bez wysokiego ciśnienia na tynku',
+      'etapowe czyszczenie powierzchni przez 3 dni',
+      'mycie okien na dodatkowe życzenie klienta',
+    ],
+    images: [
+      {
+        src: '/images/portfolio/mycie-chemiczne-elewacji-placowka-opiekuncza-przed.webp',
+        alt: 'Elewacja placówki opiekuńczej przed myciem chemicznym',
+        caption: 'Elewacja przed rozpoczęciem prac – widoczne zabrudzenia i zielonkawe naloty.',
+      },
+      {
+        src: '/images/portfolio/zacieki-na-elewacji-przed-myciem-chemicznym.webp',
+        alt: 'Zacieki i zabrudzenia na elewacji przed myciem chemicznym',
+        caption: 'Mocniejsze zacieki na elewacji, szczególnie widoczne w okolicy okien.',
+      },
+      {
+        src: '/images/portfolio/zabrudzona-elewacja-placowka-opiekuncza-przed-myciem-1.webp',
+        alt: 'Zabrudzona elewacja placówki opiekuńczej przed myciem chemicznym',
+        caption: 'Stan elewacji przed czyszczeniem chemicznym.',
+      },
+      {
+        src: '/images/portfolio/mycie-elewacji-obiekt-opiekunczy-przed-pracami-2.webp',
+        alt: 'Elewacja obiektu opiekuńczego przed rozpoczęciem prac czyszczenia',
+        caption: 'Widok na obiekt przed rozpoczęciem prac.',
+      },
+      {
+        src: '/images/portfolio/mycie-chemiczne-elewacji-placowka-opiekuncza-w-trakcie.webp',
+        alt: 'Mycie chemiczne elewacji placówki opiekuńczej w trakcie prac',
+        caption: 'Czyszczenie prowadzone etapami, bez użycia wysokiego ciśnienia na tynku.',
+      },
+      {
+        src: '/images/portfolio/czyszczenie-elewacji-tynk-baranek-bez-cisnienia.webp',
+        alt: 'Czyszczenie elewacji z tynku typu baranek bez użycia wysokiego ciśnienia',
+        caption: 'Bezpieczne czyszczenie tynku typu baranek metodą chemiczną.',
+      },
+      {
+        src: '/images/portfolio/mycie-chemiczne-elewacji-placowka-opiekuncza-po.webp',
+        alt: 'Elewacja placówki opiekuńczej po myciu chemicznym bez wysokiego ciśnienia',
+        caption: 'Efekt po myciu chemicznym – odświeżona elewacja bez naruszenia struktury tynku.',
+      },
+      {
+        src: '/images/portfolio/elewacja-placowki-opiekunczej-po-myciu-chemicznym.webp',
+        alt: 'Elewacja placówki opiekuńczej po myciu chemicznym',
+        caption: 'Odświeżona elewacja po zakończeniu prac.',
+      },
+      {
+        src: '/images/portfolio/odswiezona-elewacja-obiekt-opiekunczy-po-czyszczeniu.webp',
+        alt: 'Odświeżona elewacja obiektu opiekuńczego po czyszczeniu chemicznym',
+        caption: 'Końcowy efekt realizacji na obiekcie opiekuńczym.',
+      },
+    ],
+    seoTitle: 'Mycie chemiczne elewacji placówki opiekuńczej | G Service',
+    seoDescription:
+      'Realizacja mycia chemicznego elewacji placówki opiekuńczej. Bezpieczne czyszczenie tynku typu baranek bez wysokiego ciśnienia i bez uszkadzania struktury elewacji.',
   },
 ]
 
