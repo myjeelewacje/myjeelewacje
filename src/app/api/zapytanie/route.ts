@@ -40,6 +40,14 @@ export async function POST(req: Request) {
         host: process.env.SMTP_HOST,
         port: Number(process.env.SMTP_PORT || 587),
         secure: Number(process.env.SMTP_PORT) === 465,
+
+        // WAŻNE: wymusza IPv4, żeby Railway nie próbował łączyć się z Gmailem przez IPv6
+        family: 4,
+
+        connectionTimeout: 30000,
+        greetingTimeout: 30000,
+        socketTimeout: 30000,
+
         auth: process.env.SMTP_USER
           ? {
               user: process.env.SMTP_USER,
@@ -49,12 +57,27 @@ export async function POST(req: Request) {
       })
 
       await transporter.sendMail({
-        from: process.env.SMTP_USER || process.env.LEADS_TO_EMAIL,
+        from: `"G Service - formularz" <${process.env.SMTP_USER || process.env.LEADS_TO_EMAIL}>`,
+        replyTo: lead.email || undefined,
         to: process.env.LEADS_TO_EMAIL,
         subject: `Nowe zapytanie: ${lead.service} - ${lead.city}`,
-        text: Object.entries(lead)
-          .map(([key, value]) => `${key}: ${value}`)
-          .join('\n'),
+        text: [
+          `Usługa: ${lead.service}`,
+          `Metraż: ${lead.areaM2 || ''}`,
+          `Miasto: ${lead.city}`,
+          `Województwo: ${lead.voivodeship}`,
+          `Typ budynku: ${lead.buildingType}`,
+          `Materiał: ${lead.material}`,
+          `Termin: ${lead.timeframe}`,
+          `Imię i nazwisko: ${lead.name}`,
+          `Telefon: ${lead.phone}`,
+          `E-mail: ${lead.email}`,
+          '',
+          'Szczegóły:',
+          lead.details,
+          '',
+          `Źródło: ${lead.sourceUrl}`,
+        ].join('\n'),
       })
     }
   } catch (err) {
