@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 
 type Props = {
   before: string
@@ -9,83 +9,21 @@ type Props = {
   alt?: string
 }
 
-function clamp(value: number, min: number, max: number) {
-  return Math.min(Math.max(value, min), max)
-}
-
 export function BeforeAfterSlider({ before, after, title, alt }: Props) {
-  const wrapperRef = useRef<HTMLDivElement>(null)
   const [position, setPosition] = useState(50)
-  const [isDragging, setIsDragging] = useState(false)
-
-  function updatePosition(clientX: number) {
-    const wrapper = wrapperRef.current
-    if (!wrapper) return
-
-    const rect = wrapper.getBoundingClientRect()
-    const nextPosition = ((clientX - rect.left) / rect.width) * 100
-
-    setPosition(clamp(nextPosition, 0, 100))
-  }
 
   return (
     <div className="ba" aria-label={`${title} - porównanie przed i po`}>
       <div
-        ref={wrapperRef}
         className="ba-images"
-        role="slider"
-        tabIndex={0}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-valuenow={Math.round(position)}
-        aria-label={`Suwak porównania ${title}`}
-        onPointerDown={(event) => {
-          setIsDragging(true)
-          event.currentTarget.setPointerCapture(event.pointerId)
-          updatePosition(event.clientX)
-        }}
-        onPointerMove={(event) => {
-          if (isDragging) {
-            updatePosition(event.clientX)
-          }
-        }}
-        onPointerUp={(event) => {
-          setIsDragging(false)
-
-          if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-            event.currentTarget.releasePointerCapture(event.pointerId)
-          }
-        }}
-        onPointerCancel={(event) => {
-          setIsDragging(false)
-
-          if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-            event.currentTarget.releasePointerCapture(event.pointerId)
-          }
-        }}
-        onKeyDown={(event) => {
-          if (event.key === 'ArrowLeft') {
-            setPosition((current) => clamp(current - 5, 0, 100))
-          }
-
-          if (event.key === 'ArrowRight') {
-            setPosition((current) => clamp(current + 5, 0, 100))
-          }
-
-          if (event.key === 'Home') {
-            setPosition(0)
-          }
-
-          if (event.key === 'End') {
-            setPosition(100)
-          }
-        }}
         style={{
           position: 'relative',
           overflow: 'hidden',
+          width: '100%',
           cursor: 'ew-resize',
           touchAction: 'none',
           userSelect: 'none',
+          pointerEvents: 'auto',
         }}
       >
         <img
@@ -97,8 +35,8 @@ export function BeforeAfterSlider({ before, after, title, alt }: Props) {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            pointerEvents: 'none',
             userSelect: 'none',
+            pointerEvents: 'none',
           }}
         />
 
@@ -106,9 +44,11 @@ export function BeforeAfterSlider({ before, after, title, alt }: Props) {
           className="ba-before"
           style={{
             position: 'absolute',
-            inset: 0,
+            top: 0,
+            left: 0,
+            bottom: 0,
+            width: `${position}%`,
             overflow: 'hidden',
-            clipPath: `inset(0 ${100 - position}% 0 0)`,
             pointerEvents: 'none',
           }}
         >
@@ -121,8 +61,8 @@ export function BeforeAfterSlider({ before, after, title, alt }: Props) {
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              pointerEvents: 'none',
               userSelect: 'none',
+              pointerEvents: 'none',
             }}
           />
         </div>
@@ -134,7 +74,9 @@ export function BeforeAfterSlider({ before, after, title, alt }: Props) {
             top: 0,
             bottom: 0,
             left: `${position}%`,
+            transform: 'translateX(-50%)',
             pointerEvents: 'none',
+            zIndex: 5,
           }}
         >
           <span>↔</span>
@@ -142,6 +84,27 @@ export function BeforeAfterSlider({ before, after, title, alt }: Props) {
 
         <span className="ba-label ba-left">PRZED</span>
         <span className="ba-label ba-right">PO</span>
+
+        <input
+          type="range"
+          min="0"
+          max="100"
+          value={position}
+          aria-label={`Przesuń, aby porównać zdjęcie przed i po: ${title}`}
+          onChange={(event) => setPosition(Number(event.target.value))}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            opacity: 0,
+            cursor: 'ew-resize',
+            zIndex: 20,
+            margin: 0,
+            padding: 0,
+            pointerEvents: 'auto',
+          }}
+        />
       </div>
     </div>
   )
